@@ -12,10 +12,10 @@ app.use(cors());
 
 app.use( express.json() );
 
-app.get('/', (req, res) => {
-  res.send('Hola mundo!');
-});
+// routes
+app.use('/api/auth', require('./routes/auth'));
 
-app.listen(3000, () => {
-  console.log('Servidor escuchando en el puerto 3000');
+
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor corriendo en puerto ${ process.env.PORT }`)
 });
