@@ -13,12 +13,17 @@ dbConnection();
 app.use(cors());
 
 app.use( express.json() );
+// Configurar el directorio público para servir archivos estáticos
+app.use(express.static('public'));
 
 // routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/notes', require('./routes/notes'));
 
-
+// Ruta para mostrar la descripción del proyecto y las rutas disponibles
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/welcome.html');
+});
 
 
 app.listen(port, () => {
